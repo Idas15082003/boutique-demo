@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | Aarohi Boutique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center font-extrabold">A</div>
+                <span class="font-extrabold text-base tracking-tight">AAROHI BOUTIQUE</span>
+            </a>
+            <div class="flex gap-4 text-xs font-bold">
+                <a href="index.html" class="text-gray-600 hover:text-rose-600">← Back to Shop</a>
+                <a href="admin.html" class="text-rose-600 hover:underline">Owner Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-xl w-full mx-auto px-4 py-10 flex-1">
+        <div class="text-center mb-8">
+            <span class="bg-rose-100 text-rose-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">Real-Time Courier Sync</span>
+            <h1 class="text-2xl font-extrabold text-gray-900 mt-2">Track Your Parcel</h1>
+            <p class="text-sm text-gray-500 mt-1">
+                Enter your Order ID (e.g. <strong>#ORD-1001</strong>) or 10-digit WhatsApp Number
+            </p>
+        </div>
+
+        <form onsubmit="handleOrderSearch(event)" class="flex gap-2 mb-6">
+            <input id="trackSearchInput" type="text" placeholder="Enter #ORD-1001 or 9876543210" class="flex-1 px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-rose-600 bg-white">
+            <button type="submit" class="px-6 py-3 bg-rose-600 text-white font-bold rounded-xl text-sm hover:bg-rose-700 flex items-center gap-2 shadow">
+                <i data-lucide="package-search" class="w-4 h-4"></i> Track
+            </button>
+        </form>
+
+        <!-- Quick Demo Order Pills -->
+        <div class="mb-6 flex flex-wrap gap-2 items-center justify-center text-xs">
+            <span class="text-gray-400">Try sample orders:</span>
+            <button onclick="quickTrack('#ORD-1001')" class="bg-white border px-2.5 py-1 rounded-lg font-mono font-semibold hover:border-rose-500">#ORD-1001</button>
+            <button onclick="quickTrack('#ORD-1002')" class="bg-white border px-2.5 py-1 rounded-lg font-mono font-semibold hover:border-rose-500">#ORD-1002</button>
+        </div>
+
+        <div id="trackingContainer"></div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

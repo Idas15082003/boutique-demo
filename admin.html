@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Owner Admin & Delivery Manager | Aarohi Boutique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+
+    <header class="bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-rose-600 flex items-center justify-center font-extrabold">A</div>
+                <div>
+                    <h1 class="font-bold text-sm leading-none">Boutique Owner Dashboard</h1>
+                    <span class="text-[11px] text-gray-400">Inventory, Shiprocket AWB & Live Delivery Tracker</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-bold">
+                <a href="index.html" class="bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded-lg">View Live Shop</a>
+                <a href="track.html" class="bg-rose-600 hover:bg-rose-700 px-3 py-2 rounded-lg">Customer Tracking Page</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- LEFT COLUMN: Orders & Delivery Management (2 Cols wide) -->
+        <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-2xl border border-gray-200">
+                    <span class="text-xs text-gray-500 font-semibold">Total Orders</span>
+                    <p id="statTotalOrders" class="text-2xl font-extrabold text-gray-900 mt-1">0</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-gray-200">
+                    <span class="text-xs text-gray-500 font-semibold">Pending Dispatch</span>
+                    <p id="statPendingOrders" class="text-2xl font-extrabold text-amber-600 mt-1">0</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-gray-200">
+                    <span class="text-xs text-gray-500 font-semibold">In Transit / Shipped</span>
+                    <p id="statShippedOrders" class="text-2xl font-extrabold text-green-600 mt-1">0</p>
+                </div>
+            </div>
+
+            <!-- Orders List -->
+            <div class="bg-white rounded-2xl border border-gray-200 p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h2 class="text-base font-extrabold text-gray-900">Incoming Customer Orders & Delivery Status</h2>
+                        <p class="text-xs text-gray-500">Update courier stages here — customers see changes immediately on Track Page!</p>
+                    </div>
+                </div>
+
+                <div id="adminOrdersList" class="space-y-4">
+                    <!-- Rendered dynamically via app.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Upload New Outfit to Website -->
+        <div class="space-y-6">
+            <div class="bg-white rounded-2xl border border-gray-200 p-5">
+                <h2 class="text-base font-extrabold text-gray-900 mb-1">Upload New Outfit</h2>
+                <p class="text-xs text-gray-500 mb-4">New items added here immediately appear on the customer website.</p>
+
+                <form onsubmit="handleAddProduct(event)" class="space-y-3 text-sm">
+                    <div>
+                        <label class="text-xs font-bold text-gray-700">Garment Name *</label>
+                        <input id="newProdTitle" required type="text" placeholder="e.g. Pure Organza Floral Saree" class="w-full mt-1 px-3 py-2 border rounded-xl">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-xs font-bold text-gray-700">Selling Price (₹) *</label>
+                            <input id="newProdPrice" required type="number" placeholder="1299" class="w-full mt-1 px-3 py-2 border rounded-xl">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-700">MRP Price (₹) *</label>
+                            <input id="newProdMrp" required type="number" placeholder="1899" class="w-full mt-1 px-3 py-2 border rounded-xl">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-700">Category</label>
+                        <select id="newProdCat" class="w-full mt-1 px-3 py-2 border rounded-xl bg-white">
+                            <option value="Anarkali">Anarkali Sets</option>
+                            <option value="Sarees">Handloom Sarees</option>
+                            <option value="Kurtis">Daily Kurtis</option>
+                            <option value="Coord">Co-ord Sets</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-700">Photo URL (or leave default sample)</label>
+                        <input id="newProdImg" type="url" value="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=600&q=80" class="w-full mt-1 px-3 py-2 border rounded-xl text-xs">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white font-bold rounded-xl shadow">
+                        + Publish to Storefront
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- SHIPPING LABEL PRINT MODAL -->
+    <div id="labelModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border-2 border-dashed border-gray-400">
+            <div class="flex justify-between items-start border-b pb-3 mb-3">
+                <div>
+                    <span class="text-[10px] font-bold uppercase tracking-widest bg-gray-900 text-white px-2 py-0.5 rounded">SHIPROCKET EXPRESS</span>
+                    <h3 id="lblCourierName" class="text-lg font-extrabold mt-1">Delhivery Surface</h3>
+                </div>
+                <div class="text-right">
+                    <span id="lblPayType" class="text-xs font-extrabold px-2 py-1 rounded bg-green-100 text-green-800">PREPAID</span>
+                </div>
+            </div>
+            <div class="text-xs space-y-1.5 border-b pb-3 mb-3">
+                <p class="text-gray-500">DELIVER TO:</p>
+                <p id="lblCustName" class="font-extrabold text-sm text-gray-900"></p>
+                <p id="lblCustAddress" class="text-gray-700"></p>
+                <p id="lblCustPhone" class="font-bold text-gray-900"></p>
+            </div>
+            <div class="flex justify-between items-center text-xs border-b pb-3 mb-4">
+                <div>
+                    <p class="text-gray-500">ITEM DETAILS:</p>
+                    <p id="lblItemName" class="font-bold text-gray-900"></p>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-500">COLLECT AMOUNT:</p>
+                    <p id="lblAmount" class="font-extrabold text-base text-gray-900"></p>
+                </div>
+            </div>
+            <div class="text-center py-2 bg-gray-100 rounded-lg font-mono text-sm font-bold tracking-widest mb-4">
+                ||| |||| || ||||| |||| ||| <br>
+                <span id="lblAwb" class="text-xs">AWB: 149082349102</span>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="window.print()" class="flex-1 py-2.5 bg-rose-600 text-white font-bold rounded-xl text-xs">🖨️ Print Packet Label</button>
+                <button onclick="closeLabelModal()" class="px-4 py-2.5 bg-gray-200 text-gray-800 font-bold rounded-xl text-xs">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

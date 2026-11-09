@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarohi Boutique | Trending Ethnic Wear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-rose-600 text-white text-xs font-semibold text-center py-2 px-4">
+        ✨ Free Shipping on All Prepaid (UPI) Orders! | Mandatory 360° Parcel Opening Video for Exchange ✨
+    </div>
+
+    <!-- Sticky Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center font-extrabold text-lg">A</div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight block leading-none">AAROHI</span>
+                    <span class="text-[10px] text-rose-600 font-bold uppercase tracking-widest">Insta Boutique</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700">
+                <a href="#catalog" class="hover:text-rose-600">New Arrivals</a>
+                <a href="#featured" class="hover:text-rose-600">Best Seller</a>
+                <a href="track.html" class="hover:text-rose-600 flex items-center gap-1 text-rose-600">
+                    <i data-lucide="truck" class="w-4 h-4"></i> Track Order
+                </a>
+                <a href="admin.html" class="hover:text-rose-600 flex items-center gap-1 text-gray-500">
+                    <i data-lucide="shield" class="w-4 h-4"></i> Owner Admin
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="track.html" class="md:hidden text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1">
+                    <i data-lucide="package-search" class="w-3.5 h-3.5"></i> Track
+                </a>
+                <button onclick="toggleCart(true)" class="relative p-2 text-gray-800 hover:bg-gray-100 rounded-xl flex items-center gap-1.5 border border-gray-200">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-rose-600"></i>
+                    <span id="cartCountBadge" class="bg-rose-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">1</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Instagram Story Style Category Circles -->
+    <section class="bg-white border-b py-4">
+        <div class="max-w-6xl mx-auto px-4 flex gap-5 overflow-x-auto no-scrollbar">
+            <button onclick="filterCategory('All')" class="flex flex-col items-center gap-1.5 flex-shrink-0 group">
+                <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600">
+                    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full border-2 border-white" alt="Trending">
+                </div>
+                <span class="text-xs font-bold text-gray-800 group-hover:text-rose-600">Reels Hits 🔥</span>
+            </button>
+            <button onclick="filterCategory('Anarkali')" class="flex flex-col items-center gap-1.5 flex-shrink-0 group">
+                <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full border-2 border-white" alt="Anarkali">
+                </div>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-rose-600">Anarkali Sets</span>
+            </button>
+            <button onclick="filterCategory('Sarees')" class="flex flex-col items-center gap-1.5 flex-shrink-0 group">
+                <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600">
+                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full border-2 border-white" alt="Sarees">
+                </div>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-rose-600">Handloom Sarees</span>
+            </button>
+            <button onclick="filterCategory('Kurtis')" class="flex flex-col items-center gap-1.5 flex-shrink-0 group">
+                <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full border-2 border-white" alt="Kurtis">
+                </div>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-rose-600">Daily Kurtis</span>
+            </button>
+            <button onclick="filterCategory('Coord')" class="flex flex-col items-center gap-1.5 flex-shrink-0 group">
+                <div class="w-16 h-16 rounded-full p-0.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full border-2 border-white" alt="Co-ord">
+                </div>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-rose-600">Co-ord Sets</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Featured Product Showcase (Interactive Product Detail View) -->
+    <main id="featured" class="max-w-5xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-4 md:p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- LEFT: Image Gallery -->
+                <div>
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-3 relative">
+                        <img id="mainProductImg" src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80" alt="Product" class="w-full h-full object-cover transition-all duration-300">
+                        <span class="absolute top-3 left-3 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                            32% OFF • INSTA VIRAL
+                        </span>
+                    </div>
+                    <div class="flex gap-3 overflow-x-auto pb-2" id="thumbnailContainer">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- RIGHT: Product Details & Actions -->
+                <div class="flex flex-col">
+                    <div class="inline-flex items-center gap-1.5 text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-md w-fit mb-2">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> As Seen on Our Instagram Reel (120K+ Views)
+                    </div>
+                    <h1 id="productTitle" class="text-2xl font-extrabold text-gray-900">Handloom Cotton Embroidered Anarkali Set</h1>
+                    
+                    <div class="flex items-baseline gap-3 mt-2">
+                        <span id="productPrice" class="text-3xl font-extrabold text-rose-600">₹1,499</span>
+                        <span id="productOriginalPrice" class="text-lg text-gray-400 line-through">₹2,199</span>
+                        <span class="text-xs text-green-700 font-semibold bg-green-100 px-2 py-0.5 rounded">
+                            Inclusive of all taxes
+                        </span>
+                    </div>
+
+                    <!-- Size Selector -->
+                    <div class="mt-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold uppercase tracking-wider text-gray-700">
+                                Select Size: <strong id="selectedSizeLabel" class="text-rose-600">M</strong>
+                            </span>
+                            <button onclick="toggleSizeChart(true)" class="flex items-center gap-1 text-sm text-rose-600 font-semibold underline">
+                                <i data-lucide="ruler" class="w-4 h-4"></i> View Size Chart
+                            </button>
+                        </div>
+
+                        <div id="sizeButtonsContainer" class="flex gap-3 flex-wrap">
+                            <!-- Rendered via JS -->
+                        </div>
+
+                        <p id="lowStockWarning" class="text-xs text-amber-600 font-semibold mt-2 hidden"></p>
+                    </div>
+
+                    <!-- Delivery & Pincode Serviceability Checker -->
+                    <div class="mt-6 p-4 bg-gray-50 rounded-2xl border border-gray-200">
+                        <label class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-2">
+                            <i data-lucide="truck" class="w-4 h-4 text-rose-600"></i> Check Delivery Date & COD Availability
+                        </label>
+                        <form onsubmit="checkPincodeService(event)" class="flex gap-2">
+                            <input id="pincodeInput" type="text" maxlength="6" placeholder="Enter 6-digit Pincode (e.g. 700032)" class="flex-1 px-3.5 py-2 border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-rose-600">
+                            <button type="submit" id="checkPinBtn" class="px-4 py-2 bg-gray-900 text-white text-sm font-bold rounded-xl hover:bg-gray-800 transition">
+                                Check
+                            </button>
+                        </form>
+
+                        <div id="deliveryResult" class="mt-3 text-xs space-y-1 text-gray-700 hidden"></div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="mt-6 flex flex-col gap-3">
+                        <button onclick="buyNowCurrentProduct()" class="w-full py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2 text-base transition">
+                            <i data-lucide="shopping-bag" class="w-5 h-5"></i> Buy Now / Instant Checkout
+                        </button>
+
+                        <a id="whatsappOrderLink" href="#" target="_blank" class="w-full py-3 bg-green-50 hover:bg-green-100 text-green-800 border border-green-300 font-bold rounded-xl flex items-center justify-center gap-2 text-sm transition">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-green-600"></i> Confused? Order Directly on WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Mandatory Boutique Policy Box -->
+                    <div class="mt-6 p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 space-y-1">
+                        <p class="font-bold flex items-center gap-1.5">
+                            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600"></i> Exchange & Parcel Opening Policy:
+                        </p>
+                        <p>
+                            A continuous <strong>360° parcel opening video</strong> (without pause or cut) showing the shipping label is strictly mandatory for any size exchange or damage claim.
+                        </p>
+                    </div>
+
+                    <!-- Product Description -->
+                    <div class="mt-6 border-t pt-4">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1">Fabric & Care Details</h3>
+                        <p id="productDesc" class="text-sm text-gray-600 leading-relaxed">
+                            Pure breathable Mulmul cotton Anarkali set with intricate thread work on the yoke and sleeves. Comes with matching cotton pants and a 2.25m dupatta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- More From Our Instagram Catalog Grid -->
+    <section id="catalog" class="max-w-5xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-end mb-6">
+            <div>
+                <h2 class="text-xl font-extrabold text-gray-900">More From Our Instagram Feed</h2>
+                <p class="text-xs text-gray-500">Click any outfit below to view sizes & order</p>
+            </div>
+            <a href="admin.html" class="text-xs font-bold text-rose-600 underline">+ Add New Outfit (Admin)</a>
+        </div>
+
+        <div id="catalogGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Populated dynamically via app.js -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 text-xs py-10 mt-12">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-6">
+            <div>
+                <p class="text-white font-bold text-base">AAROHI BOUTIQUE</p>
+                <p class="mt-1">Trending Ladies Wear • Pan-India Express Delivery via Shiprocket</p>
+            </div>
+            <div class="flex gap-6 font-semibold text-white">
+                <a href="index.html" class="hover:text-rose-400">Shop</a>
+                <a href="track.html" class="hover:text-rose-400">Track Order</a>
+                <a href="admin.html" class="hover:text-rose-400">Shop Owner Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SIZE CHART MODAL -->
+    <div id="sizeChartModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-extrabold text-lg">Garment Size Guide (in Inches)</h3>
+                <button onclick="toggleSizeChart(false)" class="text-gray-500 font-bold text-lg px-2">✕</button>
+            </div>
+            <table class="w-full text-sm text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-100 text-gray-700">
+                        <th class="p-2.5 border">Size</th>
+                        <th class="p-2.5 border">Bust/Chest</th>
+                        <th class="p-2.5 border">Waist</th>
+                        <th class="p-2.5 border">Hip</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="p-2.5 border font-bold">S</td><td class="p-2.5 border">36"</td><td class="p-2.5 border">32"</td><td class="p-2.5 border">38"</td></tr>
+                    <tr><td class="p-2.5 border font-bold">M</td><td class="p-2.5 border">38"</td><td class="p-2.5 border">34"</td><td class="p-2.5 border">40"</td></tr>
+                    <tr><td class="p-2.5 border font-bold">L</td><td class="p-2.5 border">40"</td><td class="p-2.5 border">36"</td><td class="p-2.5 border">42"</td></tr>
+                    <tr><td class="p-2.5 border font-bold">XL</td><td class="p-2.5 border">42"</td><td class="p-2.5 border">38"</td><td class="p-2.5 border">44"</td></tr>
+                    <tr><td class="p-2.5 border font-bold">XXL</td><td class="p-2.5 border">44"</td><td class="p-2.5 border">40"</td><td class="p-2.5 border">46"</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SLIDE-OUT 1-STEP GUEST CHECKOUT DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 bg-black/50 z-50 hidden justify-end">
+        <div class="bg-white w-full max-w-md h-full flex flex-col justify-between overflow-y-auto p-5 shadow-2xl">
+            <div>
+                <div class="flex justify-between items-center border-b pb-4">
+                    <h2 class="text-lg font-extrabold text-gray-900">1-Step Express Checkout</h2>
+                    <button onclick="toggleCart(false)" class="p-1.5 rounded-lg hover:bg-gray-100 font-bold">✕</button>
+                </div>
+
+                <!-- Selected Product Summary -->
+                <div class="flex gap-3 py-4 border-b">
+                    <img id="cartItemImg" src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=200&q=80" alt="Product" class="w-16 h-20 object-cover rounded-lg border">
+                    <div class="flex-1">
+                        <h4 id="cartItemTitle" class="text-sm font-bold text-gray-800">Handloom Cotton Embroidered Anarkali Set</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Size: <strong id="cartItemSize" class="text-rose-600">M</strong> | Qty: 1</p>
+                        <p id="cartItemPrice" class="text-sm font-extrabold text-rose-600 mt-1">₹1499</p>
+                    </div>
+                </div>
+
+                <!-- Delivery Address Form -->
+                <form id="checkoutForm" onsubmit="placeCustomerOrder(event)" class="mt-4 space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">
+                        Delivery Details (For WhatsApp Tracking Updates)
+                    </h3>
+                    <input id="custName" required type="text" placeholder="Full Name *" class="w-full px-3.5 py-2.5 border rounded-xl text-sm">
+                    <input id="custPhone" required type="tel" maxlength="10" placeholder="10-Digit WhatsApp Number *" class="w-full px-3.5 py-2.5 border rounded-xl text-sm">
+                    <div class="grid grid-cols-2 gap-2">
+                        <input id="custPincode" required type="text" maxlength="6" oninput="autoFillCityState(this.value)" placeholder="6-Digit Pincode *" class="w-full px-3.5 py-2.5 border rounded-xl text-sm">
+                        <input id="custCity" required type="text" placeholder="City, State" class="w-full px-3.5 py-2.5 border bg-gray-50 text-gray-700 rounded-xl text-sm">
+                    </div>
+                    <textarea id="custAddress" required rows="2" placeholder="House No, Building, Street, Landmark *" class="w-full px-3.5 py-2.5 border rounded-xl text-sm"></textarea>
+
+                    <!-- Payment Method Selector -->
+                    <div class="mt-4 space-y-2 pt-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">
+                            Select Payment Method
+                        </h3>
+                        
+                        <label onclick="setPaymentMethod('PREPAID')" id="lblPrepaid" class="flex items-center justify-between p-3 border border-rose-600 bg-rose-50/40 rounded-xl cursor-pointer">
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="paymode" id="radioPrepaid" checked class="accent-rose-600">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900">UPI / GPay / PhonePe / Cards</p>
+                                    <p class="text-xs text-green-700 font-semibold">✓ Free Express Shipping</p>
+                                </div>
+                            </div>
+                            <span id="prepaidPriceLabel" class="text-sm font-extrabold">₹1499</span>
+                        </label>
+
+                        <label onclick="setPaymentMethod('COD')" id="lblCod" class="flex items-center justify-between p-3 border border-gray-200 rounded-xl cursor-pointer">
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="paymode" id="radioCod" class="accent-rose-600">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900">Cash on Delivery (COD)</p>
+                                    <p class="text-xs text-gray-500">+ ₹70 Courier COD Handling Fee</p>
+                                </div>
+                            </div>
+                            <span id="codPriceLabel" class="text-sm font-extrabold">₹1569</span>
+                        </label>
+                    </div>
+
+                    <div class="border-t pt-4 mt-6">
+                        <div class="flex justify-between text-sm font-bold mb-3">
+                            <span>Total Payable:</span>
+                            <span id="finalPayableLabel" class="text-lg text-rose-600 font-extrabold">₹1499</span>
+                        </div>
+                        <button type="submit" id="submitOrderBtn" class="w-full py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2">
+                            Pay ₹1499 via UPI / Place Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
